@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Untitled map</name>
+    <description/>
+    <NetworkLink>
+      <name>Untitled map</name>
+      <Link>
+        <href><![CDATA[http://www.google.com/maps/d/u/0/kml?forcekml=1&mid=1aW4BLldSwoDKnNymAhpdPOilXf-2ooln]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
