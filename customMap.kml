@@ -3,25 +3,5 @@
   <Document>
     <name>Predix map</name>
     <description/>
-    <Folder>
-      <name>Schools</name>
-      <Placemark>
-        <name>Del Lago Academy of Applied Sciences,San Diego</name>
-        <address>Del Lago Academy of Applied Sciences,San Diego</address>
-        <description><![CDATA[Hospital: Aurora Behavioral Health Care-San Diego<br>Stadium: Aztec Aquaplex, San Diego<br>Government Shelters: Alpha Project, San Diego]]></description>
-        <styleUrl>#icon-1526-3949AB</styleUrl>
-        <ExtendedData>
-          <Data name="Hospital">
-            <value>Aurora Behavioral Health Care-San Diego</value>
-          </Data>
-          <Data name="Stadium">
-            <value>Aztec Aquaplex, San Diego</value>
-          </Data>
-          <Data name="Government Shelters">
-            <value>Alpha Project, San Diego</value>
-          </Data>
-        </ExtendedData>
-      </Placemark>
-    </Folder>
   </Document>
 </kml>
