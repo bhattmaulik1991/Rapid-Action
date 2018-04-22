@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        .gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <style type="text/css">
+        .gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}
+    </style>
+    <style type="text/css">
+        @media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}
+    </style>
+    <style type="text/css">
+        .gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>Admin Dashboard</title>
+    <style>
+        #loader{transition:all .3s ease-in-out;opacity:1;visibility:visible;position:fixed;height:100vh;width:100%;background:#fff;z-index:90000}#loader.fadeOut{opacity:0;visibility:hidden}.spinner{width:40px;height:40px;position:absolute;top:calc(50% - 20px);left:calc(50% - 20px);background-color:#333;border-radius:100%;-webkit-animation:sk-scaleout 1s infinite ease-in-out;animation:sk-scaleout 1s infinite ease-in-out}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}
+    </style>
+    <link type="text/css" rel="stylesheet" href="blob:http://localhost:3000/1c6d4924-8762-4d10-9e26-37778cf20a60">
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
+    </style>
+    <link type="text/css" rel="stylesheet" href="blob:http://localhost:3000/32c6ce41-4410-4099-8933-96c4c9716819">
+    <link type="text/css" rel="stylesheet" href="blob:http://localhost:3000/7757a641-6070-4cf6-897b-2dda50c69077">
+    <link type="text/css" rel="stylesheet" href="blob:http://localhost:3000/4a648c79-98cd-497e-abb4-3fb48411eb6d">
+    <style type="text/css">
+        .jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/scripts/vendor.js"></script>
+    <script type="text/javascript" src="assets/scripts/bundle.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDW8td30_gj6sGXjiMU0ALeMu1SDEwUnEA"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/map.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/marker.js"></script>
+    <style type="text/css">
+        .gm-style {
+                font: 400 11px Roboto, Arial, sans-serif;
+                text-decoration: none;
+              }
+              .gm-style img { max-width: none; }
+    </style>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/onion.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/controls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/32/11/stats.js"></script>
+    <script type="text/javascript" src="https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard</title>
+
+    <style>
+        #loader {
+            transition: all 0.3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000;
+          }
+    
+          #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden;
+          }
+    
+          .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+            animation: sk-scaleout 1.0s infinite ease-in-out;
+          }
+    
+          @-webkit-keyframes sk-scaleout {
+            0% { -webkit-transform: scale(0) }
+            100% {
+              -webkit-transform: scale(1.0);
+              opacity: 0;
+            }
+          }
+    
+          @keyframes sk-scaleout {
+            0% {
+              -webkit-transform: scale(0);
+              transform: scale(0);
+            } 100% {
+              -webkit-transform: scale(1.0);
+              transform: scale(1.0);
+              opacity: 0;
+            }
+          }
+    </style>
+</head>
+
+<body class="app">
+    <!-- @TOC -->
+    <!-- =================================================== -->
+    <!--
+      + @Page Loader
+      + @App Content
+          - #Left Sidebar
+              > $Sidebar Header
+              > $Sidebar Menu
+
+          - #Main
+              > $Topbar
+              > $App Screen Content
+    -->
+
+    <!-- @Page Loader -->
+    <!-- =================================================== -->
+    <div id='loader'>
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+              loader.classList.add('fadeOut');
+            }, 300);
+          });
+    </script>
+
+    <!-- @App Content -->
+    <!-- =================================================== -->
+    <div>
+        <!-- #Left Sidebar ==================== -->
+        <div class="sidebar">
+            <div class="sidebar-inner" style="height: 250px">
+                <!-- ### $Sidebar Header ### -->
+                <div class="sidebar-logo">
+                    <div class="peers ai-c fxw-nw">
+                        <div class="peer peer-greed">
+                            <a class="sidebar-link td-n" href="adminDashboard.html">
+                                <div class="peers ai-c fxw-nw">
+                                    <div class="peer">
+                                        <div class="logo">
+                                            <img src="assets/static/images/logo.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="peer peer-greed">
+                                        <h5 class="lh-1 mB-0 logo-text">RapidAction</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="peer">
+                            <div class="mobile-toggle sidebar-toggle">
+                                <a href="" class="td-n">
+                    <i class="ti-arrow-circle-left"></i>
+                  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ### $Sidebar Menu ### -->
+                <ul class="sidebar-menu scrollable pos-r">
+                    <li class="nav-item mT-30 active">
+                        <a class="sidebar-link" href="adminDashboard.html">
+                <span class="icon-holder">
+                  <i class="c-blue-500 ti-home"></i>
+                </span>
+                <span class="title">Dashboard</span>
+              </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='sidebar-link' href="email.html">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-email"></i>
+                </span>
+                <span class="title">Messages</span>
+              </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='sidebar-link' href="compose.html">
+                <span class="icon-holder">
+                  <i class="c-blue-500 ti-share"></i>
+                </span>
+                <span class="title">Dispath Notification</span>
+              </a>
+                    </li>
+                </ul>
+            </div>            
+            <div class="masonry-item col-md-12" >
+                <!-- #Weather ==================== -->
+                <div class="bd bgc-white p-20">
+                    <div class="layers">
+                        <!-- Widget Title -->
+                        <div class="layer w-100 mB-20">
+                            <h6 class="lh-1">Weather</h6>
+                        </div>
+
+                        <!-- Today Weather -->
+                        <div class="layer w-100">
+                            <div class="peers ai-c jc-sb fxw-nw">
+                                <div class="peer peer-greed">
+                                    <div class="layers">
+                                        <!-- Temprature -->
+                                        <div class="layer w-100">
+                                            <div class="peers fxw-nw ai-c">
+                                                <div class="peer mR-20">
+                                                    <h3 id="temprature">32<sup>°F</sup></h3>
+                                                </div>
+                                                <div class="peer">
+                                                    <canvas class="sleet" width="44" height="44"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Condition -->
+                                        <div class="layer w-100">
+                                            <span class="fw-600 c-grey-600" id="weather">Partly Clouds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="peer">
+                                    <div class="layers ai-fe">
+                                        <div class="layer">
+                                            <h5 class="mB-5" id="currentDay">Monday</h5>
+                                        </div>
+                                        <div class="layer">
+                                            <span class="fw-600 c-grey-600" id="currentDate">Nov, 01 2017</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today Weather Extended -->
+                        <div class="layer w-100 mY-30" style="margin: 0 !important">
+                            <div class="layers bdB">
+                                <div class="layer w-100 bdT pY-5">
+                                    <div class="peers ai-c jc-sb fxw-nw">
+                                        <div class="peer">
+                                            <span>Wind</span>
+                                        </div>
+                                        <div class="peer ta-r">
+                                            <span class="fw-600 c-grey-800" id="windSpeed">10km/h</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layer w-100 bdT pY-5">
+                                    <div class="peers ai-c jc-sb fxw-nw">
+                                        <div class="peer">
+                                            <span>Sunrise</span>
+                                        </div>
+                                        <div class="peer ta-r">
+                                            <span class="fw-600 c-grey-800" id="humidity">05:00 AM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layer w-100 bdT pY-5">
+                                    <div class="peers ai-c jc-sb fxw-nw">
+                                        <div class="peer">
+                                            <span>Pressure</span>
+                                        </div>
+                                        <div class="peer ta-r">
+                                            <span class="fw-600 c-grey-800" id="pressure">1B</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week Forecast -->
+                        <div class="layer w-100">
+                            <div class="peers peers-greed ai-fs ta-c">
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">MON</h6>
+                                    <canvas class="sleet" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempMon" style="display: inline-block !important;">32<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">TUE</h6>
+                                    <canvas class="clear-day" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempTue" style="display: inline-block !important;">30<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">WED</h6>
+                                    <canvas class="partly-cloudy-day" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempWed" style="display: inline-block !important;">28<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">THR</h6>
+                                    <canvas class="cloudy" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempThurs" style="display: inline-block !important;">32<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">FRI</h6>
+                                    <canvas class="snow" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempFri" style="display: inline-block !important;">24<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">SAT</h6>
+                                    <canvas class="wind" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempSat" style="display: inline-block !important;">28<sup>°F</sup></span>
+                                </div>
+                                <div class="peer">
+                                    <h6 class="mB-10" style="display: inline-block !important;">SUN</h6>
+                                    <canvas class="sleet" width="30" height="30"></canvas>
+                                    <span class="d-b fw-600" id="tempSun" style="display: inline-block !important;">32<sup>°F</sup></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #Main ============================ -->
+        <div class="page-container">
+            <!-- ### $Topbar ### -->
+            <div class="header navbar">
+                <div class="header-container">
+                    <ul class="nav-left">
+                        <li>
+                        </li>
+                    </ul>
+                    <ul class="nav-right">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                                <div class="peer mR-10">
+                                    <img class="w-2r bdrs-50p" src="assets/static/images/user_icon.png" alt="">
+                                </div>
+                                <div class="peer">
+                                    <span class="fsz-sm c-grey-900">Admin</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ### $App Screen Content ### -->
+            <main class='main-content bgc-grey-100'>
+                <div id='mainContent'>
+                    <div class="row gap-20 masonry pos-r">
+                        <div class="masonry-sizer col-md-6"></div>
+                        <div class="masonry-item  w-100">
+                            <div class="row gap-20">
+                                <!-- #Toatl Visits ==================== -->
+                                <div class='col-md-3'>
+                                    <div class="layers bd bgc-white p-20">
+                                        <div class="layer w-100 mB-10">
+                                            <h6 class="lh-1">Minor Incidents</h6>
+                                        </div>
+                                        <div class="layer w-100">
+                                            <div class="peers ai-sb fxw-nw">
+                                                <div class="peer peer-greed">
+                                                    <span id="sparklinedash"></span>
+                                                </div>
+                                                <div class="peer">
+                                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500" id="incidentLow">+10%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- #Total Page Views ==================== -->
+                                <div class='col-md-3'>
+                                    <div class="layers bd bgc-white p-20">
+                                        <div class="layer w-100 mB-10">
+                                            <h6 class="lh-1">Major Incidents</h6>
+                                        </div>
+                                        <div class="layer w-100">
+                                            <div class="peers ai-sb fxw-nw">
+                                                <div class="peer peer-greed">
+                                                    <span id="sparklinedash2"></span>
+                                                </div>
+                                                <div class="peer">
+                                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500" id="incidentHigh">-7%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- #Unique Visitors ==================== -->
+                                <div class='col-md-3'>
+                                    <div class="layers bd bgc-white p-20">
+                                        <div class="layer w-100 mB-10">
+                                            <h6 class="lh-1">Active CityIQ Nodes</h6>
+                                        </div>
+                                        <div class="layer w-100">
+                                            <div class="peers ai-sb fxw-nw">
+                                                <div class="peer peer-greed">
+                                                    <span id="sparklinedash3"></span>
+                                                </div>
+                                                <div class="peer">
+                                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">3000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- #Bounce Rate ==================== -->
+                                <div class='col-md-3'>
+                                    <div class="layers bd bgc-white p-20">
+                                        <div class="layer w-100 mB-10">
+                                            <h6 class="lh-1">Available Shelters</h6>
+                                        </div>
+                                        <div class="layer w-100">
+                                            <div class="peers ai-sb fxw-nw">
+                                                <div class="peer peer-greed">
+                                                    <span id="sparklinedash4"></span>
+                                                </div>
+                                                <div class="peer">
+                                                    <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">33%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="masonry-item col-12">
+                            <!-- #Site Visits ==================== -->
+                            <div class="bd bgc-white">
+                                <div class="peers fxw-nw@lg+ ai-s">
+                                    <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
+                                        <div class="layers" style="width: 100%; display: inline-block; float: left;">
+                                            <div class="layer w-100">
+                                                <div id="google-map" style="padding-bottom: 75%;"></div>
+                                                <div id="legend"><h3>Legend</h3></div>
+                                                <!--div id="new_map"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=1aW4BLldSwoDKnNymAhpdPOilXf-2ooln" style="pointer-events: none;"  width="100%" height="480"></iframe></div-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="peer bdL p-20 w-30p@lg+ w-100p@lg-" style="display: inline-block;">
+                                        <div class="layers">
+                                            <div class="layer w-100">
+                                                <!-- Progress Bars -->
+                                                <div class="layers">
+                                                    <div class="layer w-100">
+                                                        <h5 class="mB-5 vehicals">100</h5>
+                                                        <small class="fw-600 c-grey-700">Number of Vehicals in Node Scope</small>
+                                                        <span class="pull-right c-grey-600 fsz-sm">50%</span>
+                                                        <div class="progress mT-10">
+                                                            <div class="progress-bar bgc-deep-purple-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;"> <span class="sr-only">50% </span></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layer w-100 mT-15">
+                                                        <h5 class="mB-5 pedestrian">150</h5>
+                                                        <small class="fw-600 c-grey-700">Number of Pedestrian in Node Scope</small>
+                                                        <span class="pull-right c-grey-600 fsz-sm">80%</span>
+                                                        <div class="progress mT-10">
+                                                            <div class="progress-bar bgc-green-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">80% </span></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layer w-100 mT-15">
+                                                        <h5 class="mB-5">80</h5>
+                                                        <small class="fw-600 c-grey-700">Available Parking Space in Node Scope</small>
+                                                        <span class="pull-right c-grey-600 fsz-sm">40%</span>
+                                                        <div class="progress mT-10">
+                                                            <div class="progress-bar bgc-light-blue-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:40%;"> <span class="sr-only">40% </span></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layer w-100 mT-15">
+                                                        <h5 class="mB-5">25</h5>
+                                                        <small class="fw-600 c-grey-700">Over Utilized Routes</small>
+                                                        <span class="pull-right c-grey-600 fsz-sm">25%</span>
+                                                        <div class="progress mT-10">
+                                                            <div class="progress-bar bgc-blue-grey-500" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:90%;"> <span class="sr-only">25% </span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+      const latitude  = 32.7157;
+      const longitude = -117.1611;
+      const mapZoom   = 10;
+      const { google }    = window;
+
+      const mapOptions = {
+        center    : new google.maps.LatLng(latitude, longitude),
+        zoom      : mapZoom,
+        mapTypeId : google.maps.MapTypeId.ROADMAP,
+        styles: [{
+          'featureType': 'landscape',
+          'stylers': [
+            { 'hue'        : '#FFBB00' },
+            { 'saturation' : 43.400000000000006 },
+            { 'lightness'  : 37.599999999999994 },
+            { 'gamma'      : 1 },
+          ],
+        }, {
+          'featureType': 'road.highway',
+          'stylers': [
+            { 'hue'        : '#FFC200' },
+            { 'saturation' : -61.8 },
+            { 'lightness'  : 45.599999999999994 },
+            { 'gamma'      : 1 },
+          ],
+        }, {
+          'featureType': 'road.arterial',
+          'stylers': [
+            { 'hue'        : '#FF0300' },
+            { 'saturation' : -100 },
+            { 'lightness'  : 51.19999999999999 },
+            { 'gamma'      : 1 },
+          ],
+        }, {
+          'featureType': 'road.local',
+          'stylers': [
+            { 'hue'        : '#FF0300' },
+            { 'saturation' : -100 },
+            { 'lightness'  : 52 },
+            { 'gamma'      : 1 },
+          ],
+        }, {
+          'featureType': 'water',
+          'stylers': [
+            { 'hue'        : '#0078FF' },
+            { 'saturation' : -13.200000000000003 },
+            { 'lightness'  : 2.4000000000000057 },
+            { 'gamma'      : 1 },
+          ],
+        }, {
+          'featureType': 'poi',
+          'stylers': [
+            { 'hue'        : '#00FF6A' },
+            { 'saturation' : -1.0989010989011234 },
+            { 'lightness'  : 11.200000000000017 },
+            { 'gamma'      : 1 },
+          ],
+        }],
+      };
+
+      const map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+
+      $('#google-map').append(new google.maps.Marker({
+        map,
+        position : new google.maps.LatLng(latitude, longitude),
+        visible  : true,
+      }));
+
+      var script = document.createElement('script');
+      script.setAttribute('src', 'assets/static/earthQuake.json');
+      document.getElementsByTagName('head')[0].appendChild(script);
+      map.data.setStyle(function(feature) {
+        var mag = Math.exp(parseFloat(feature.getProperty('mag'))) * 0.1;
+        if(feature.getProperty('tsunami')==null){
+          return /** @type {google.maps.Data.StyleOptions} */({
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: mag,
+              fillColor: '#f00',
+              fillOpacity: 0.35,
+              strokeWeight: 0
+            }
+          });
+        } else {
+          return /** @type {google.maps.Data.StyleOptions} */({
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: mag,
+              fillColor: '#00f',
+              fillOpacity: 0.35,
+              strokeWeight: 0
+            }
+          });
+        }
+      });
+      function eqfeed_callback(data) {
+        map.data.addGeoJson(data);
+      }
+      var icons = {
+        hospital: {
+          name: 'hospital',
+          icon: 'https://mt.googleapis.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1624-medical_4x.png&highlight=ff000000,E65100'
+        },
+        school: {
+          name: 'school',
+          icon: 'https://mt.googleapis.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1526-book_4x.png'
+        },
+        stadium: {
+          name: 'stadium',
+          icon: 'https://mt.googleapis.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1579-football_4x.png&highlight=ff000000,F57C00'
+        },
+        shelter:{
+          name:'shelter',
+          icon: 'https://mt.google.com/vt/icon/name=icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1603-house_4x.png&highlight=880E4F,ff000000'
+        },
+        cityiq:{
+          name: 'cityiq',
+          icon: 'https://mt.googleapis.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1498-shape_default_4x.png&highlight=ff000000,7CB342'
+        },
+        asset:{
+          name: 'asset',
+          icon: 'https://mt.googleapis.com/vt/icon/name=icons/onion/SHARED-mymaps-container-bg_4x.png,icons/onion/SHARED-mymaps-container_4x.png,icons/onion/1535-camera-photo_4x.png&highlight=ff000000,0288D1'
+        }
+      };
+
+      var features = [
+        {   position: new google.maps.LatLng(32.773813,-117.07924500000001), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7749233,-117.07481210000003), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.720434,-117.150394), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.8805864,-117.23187430000002), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7887631,-117.09292390000002), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7176451,-117.16332299999999), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.9072983,-117.12285159999999), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7744376,-117.18378059999998), type: 'stadium'},
+        {   position: new google.maps.LatLng(33.011877,-117.12073800000002), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7076563,-117.15690430000001), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7740455,-117.07643730000001), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.8852757,-117.23918229999998), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.754352,-117.24145780000003), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7831122,-117.11957159999997), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7742054,-117.07865950000001), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7730856,-117.18367380000001), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.9043227,-117.2444931), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.8898206,-117.23962419999998), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.755274,-117.212196), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.7738062,-117.0746039), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.838364,-117.212784), type: 'stadium'},
+        {   position: new google.maps.LatLng(32.745704,-117.160123), type: 'shelter'},
+        {   position: new google.maps.LatLng(33.2164056,-117.34745939999999), type: 'shelter'},
+        {   position: new google.maps.LatLng(32.782625,-117.09464230000003), type: 'shelter'},
+        {   position: new google.maps.LatLng(32.8095585,-116.96292019999999), type: 'shelter'},
+        {   position: new google.maps.LatLng(33.12497,-117.09186549999998), type: 'shelter'},
+        {   position: new google.maps.LatLng(32.7243519,-117.16348299999999), type: 'shelter'},
+        {   position: new google.maps.LatLng(32.70577360000001,-117.15005400000001), type: 'shelter'},
+        {   position: new google.maps.LatLng(33.0991246,-117.10461320000002), type: 'school'},
+        {   position: new google.maps.LatLng(33.144327,-117.090959), type: 'school'},
+        {   position: new google.maps.LatLng(33.1288937,-117.04060219999997), type: 'school'},
+        {   position: new google.maps.LatLng(33.0762528,-117.0571213), type: 'school'},
+        {   position: new google.maps.LatLng(33.3490246,-117.24183800000003), type: 'school'},
+        {   position: new google.maps.LatLng(32.799206,-116.94759099999999), type: 'school'},
+        {   position: new google.maps.LatLng(32.8683679,-116.91644940000003), type: 'school'},
+        {   position: new google.maps.LatLng(32.7983446,-116.91444680000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.7801132,-116.98821709999999), type: 'school'},
+        {   position: new google.maps.LatLng(32.816582,-117.00628019999999), type: 'school'},
+        {   position: new google.maps.LatLng(32.7540843,-117.03656910000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.7365783,-116.97352080000002), type: 'school'},
+        {   position: new google.maps.LatLng(32.7246041,-117.0155226), type: 'school'},
+        {   position: new google.maps.LatLng(32.857439,-116.96917489999998), type: 'school'},
+        {   position: new google.maps.LatLng(32.7302968,-116.92517900000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.760675,-116.921179), type: 'school'},
+        {   position: new google.maps.LatLng(32.8479481,-117.01568529999997), type: 'school'},
+        {   position: new google.maps.LatLng(32.7343516,-116.49294600000002), type: 'school'},
+        {   position: new google.maps.LatLng(33.2175617,-117.31890450000003), type: 'school'},
+        {   position: new google.maps.LatLng(33.197067,-117.374143), type: 'school'},
+        {   position: new google.maps.LatLng(39.318855,-121.10467800000004), type: 'school'},
+        {   position: new google.maps.LatLng(33.0262922,-116.8688937), type: 'school'},
+        {   position: new google.maps.LatLng(32.8827123,-117.22211700000003), type: 'school'},
+        {   position: new google.maps.LatLng(32.7020437,-117.06464770000002), type: 'school'},
+        {   position: new google.maps.LatLng(32.9590757,-117.18943330000002), type: 'school'},
+        {   position: new google.maps.LatLng(33.0732673,-117.23034760000002), type: 'school'},
+        {   position: new google.maps.LatLng(33.0371436,-117.27499720000003), type: 'school'},
+        {   position: new google.maps.LatLng(32.9574372,-117.22618840000001), type: 'school'},
+        {   position: new google.maps.LatLng(34.2758677,-118.79797989999997), type: 'school'},
+        {   position: new google.maps.LatLng(32.6471172,-116.9992226), type: 'school'},
+        {   position: new google.maps.LatLng(32.6067294,-117.0504426), type: 'school'},
+        {   position: new google.maps.LatLng(32.6214841,-117.07746830000002), type: 'school'},
+        {   position: new google.maps.LatLng(32.6402859,-116.9675992), type: 'school'},
+        {   position: new google.maps.LatLng(32.6360769,-117.05904290000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.6046592,-117.06423789999997), type: 'school'},
+        {   position: new google.maps.LatLng(32.5792259,-117.12183340000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.5855988,-117.0647042), type: 'school'},
+        {   position: new google.maps.LatLng(32.6080915,-116.97467929999999), type: 'school'},
+        {   position: new google.maps.LatLng(32.6213774,-116.98940099999999), type: 'school'},
+        {   position: new google.maps.LatLng(32.5645135,-117.0172748), type: 'school'},
+        {   position: new google.maps.LatLng(32.5677672,-117.0832828), type: 'school'},
+        {   position: new google.maps.LatLng(32.6600724,-117.09415860000001), type: 'school'},
+        {   position: new google.maps.LatLng(33.2555816,-117.26434389999997), type: 'school'},
+        {   position: new google.maps.LatLng(33.1642774,-117.24662209999997), type: 'school'},
+        {   position: new google.maps.LatLng(33.2225463,-117.24088560000001), type: 'school'},
+        {   position: new google.maps.LatLng(32.9913251,-117.07494919999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7543021,-117.16592359999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7516563,-117.16079179999997), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7993669,-117.15441570000002), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7964155,-117.1551159), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.743287,-117.23372999999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7979803,-117.1514977), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.776466,-117.05725380000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7273155,-117.14563900000002), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.830131,-117.12484230000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7562088,-117.14446759999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.996943,-117.05543499999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7988757,-117.15729349999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7982372,-117.15497909999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7273155,-117.14563900000002), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7537616,-117.20176839999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7562088,-117.14446759999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7495665,-117.07667630000003), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7497568,-117.15935739999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7509977,-117.21236870000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.753241,-117.16521999999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7792896,-117.16031939999999), type: 'hospital'},
+        {   position: new google.maps.LatLng(33.2563235,-116.37689269999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.8297793,-117.13965389999998), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7173715,-117.1579094), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.74810280000001,-117.07660040000002), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7982704,-117.2464807), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.8060995,-117.15469200000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(33.0057162,-117.09420560000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.8142567,-117.1246731), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.7835485,-117.02885500000002), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.6941215,-117.16837090000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.788679,-116.96150890000001), type: 'hospital'},
+        {   position: new google.maps.LatLng(32.708757321722075,-117.16414366466401), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70883886843662,-117.1640724414237), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70700245552967,-117.16051018781927), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70687182011883,-117.16068437428413), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71550213841844,-117.16388695775103), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71549620911988,-117.16375343111399), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71135842609887,-117.17078433390203), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.711481140442814,-117.17081143171514), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71581242760893,-117.16496306716802), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71570325523679,-117.16494708409037), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70590806508731,-117.15909611180291), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.705983347102425,-117.15899375490011), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70579397481433,-117.16337238299894), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70576298795274,-117.16329384385844), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72004718451521,-117.16471675108916), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72006847275638,-117.16490088274423), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.707688938157595,-117.16193534741952), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7077565887287,-117.16185117395743), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7199094305042,-117.16318522425027), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71981799754181,-117.1631808590152), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7158287622473,-117.16318370175506), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71571812064477,-117.16310014620599), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71559543674278,-117.16540779461785), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.715724784433014,-117.1654140491127), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71561530656026,-117.16450691307296), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71574700608122,-117.164499464868), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71080225625835,-117.16802697142226), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71088038343985,-117.16797430744481), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.717993853907295,-117.16106245952234), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71797480382647,-117.16121083294402), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.715821422927036,-117.16403243486916), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.715716671736295,-117.16402007548687), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71550610301063,-117.16115063789543), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71551828752287,-117.16102333916977), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70577455447699,-117.1572546847996), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70574346747162,-117.15728644519245), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.715819449182916,-117.16585008988629), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71568456273419,-117.1658350947976), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72095427607122,-117.1685651995721), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72087341083584,-117.16856821963783), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72007360055994,-117.16288387405366), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72006119190645,-117.16294156639752), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719911778479684,-117.16500252734498), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719768999191984,-117.164997145258), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71983688469285,-117.16302173879963), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71984240273014,-117.16291521660239), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71796807314185,-117.16197014850476), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71797492088035,-117.16203799184166), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7156057202534,-117.16359559220167), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7157094200279,-117.16361798022263), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.711743077715084,-117.17093433719192), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.711750215930785,-117.17106992699988), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72213900495569,-117.16915984973697), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7221505170821,-117.16929947073926), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719848914212186,-117.16184480591943), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719999562019396,-117.1618013995155), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.722831669624185,-117.16924259286095), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72280680649807,-117.16911956286823), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72904234548309,-117.19530227687932), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72905325591719,-117.19519851783966), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72190440005639,-117.16900458827257), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72197295338281,-117.1690107744879), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7293753404398,-117.18779233510891), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72937969118861,-117.18790217554569), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72913279014615,-117.20916810632495), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72899919106759,-117.20914199744908), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72888369760565,-117.20893462465234), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.729172627041606,-117.20895959582548), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71597960690573,-117.16294481317048), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71599379868482,-117.16305301748017), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72002557865729,-117.16198196559323), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71997015335513,-117.16211896283009), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71981497096481,-117.16364405646564), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719931101710394,-117.16365471682792), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.723154716861636,-117.16914498369526), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72315567507814,-117.16928758483041), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7197678125229,-117.16210630306047), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.719765036855335,-117.16197113514552), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.717960907535335,-117.16391644427591), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71789089647124,-117.16381065561777), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.728416930598634,-117.18417351872618), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72856183458542,-117.18410175986298), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.72946989999953,-117.19105534745617), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.729481214639996,-117.19119300860199), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.7288650040169,-117.18414273341176), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.728888880509686,-117.18422889685716), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71580921147459,-117.16677448037868), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.71569097031825,-117.16675821923768), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.9566364985883,-117.20798211109123), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95660269296789,-117.20790438970447), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95573348844073,-117.20851860005021), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95578317312755,-117.20856994216392), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95573160508286,-117.19313276203972), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95566579495095,-117.193101636249), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.957273048806,-117.20786144635471), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95725775675684,-117.20779298788256), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.958021381562205,-117.20810659895403), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.958051208804626,-117.2080387555362), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.947262902318926,-117.09572301396409), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94726567906076,-117.09584199168677), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.97905197578232,-117.08231953585559), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.978939567211626,-117.08231471184602), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.97504694147404,-117.08482124711183), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.974995235856916,-117.08470744184659), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.982888580206925,-117.07586920476544), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.98296902817428,-117.07585963341046), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94714108990432,-117.09622553413622), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94702615625627,-117.09623879135621), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.964304129041096,-117.09050098832095), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96427587008734,-117.0903925362649), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95190720189901,-117.10772114858972), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95187812967836,-117.10783167683825), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96002324490906,-117.12294346883604), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.959984660403116,-117.12300888698552), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94709224193566,-117.12981082198701), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94710375214807,-117.12991748766069), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.97648588800561,-117.14637021626467), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.9764160089024,-117.14646005226778), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.97602045221529,-117.14659956951165), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.97594459690413,-117.14651991822255), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.98481929932809,-117.1317657846322), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.9848803198584,-117.13166124864598), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.93745392950121,-117.12686162010324), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.93750814822438,-117.1269566787337), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96171652678626,-117.18666569531965), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.961694791232595,-117.18655924285753), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96063955763603,-117.18793473428387), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96056410852108,-117.18787491225817), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96051297766322,-117.19172697769703), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.960606427270406,-117.19168923026442), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95545769758383,-117.21382301394588), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95543696783489,-117.21372460367668), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95924776350943,-117.20962667153857), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.9592047907839,-117.20965974953761), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96603601147201,-117.18351943663583), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96594400735606,-117.1834657539635), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.93637690112177,-117.10737504650886), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.93648001609438,-117.10742458192419), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96746422666504,-117.17998727143552), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96758018611699,-117.18004010414941), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.964787841604505,-117.18645158775125), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.964879529959475,-117.18648558532146), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.968040866457116,-117.17811839189307), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96816681431406,-117.17816114733468), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96095306254782,-117.19175214367996), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96097958094957,-117.19184354992593), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.968378049556875,-117.17841600842428), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96836839049049,-117.17857559873761), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94738570903776,-117.13439622019662), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.94735605407044,-117.1343213681199), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96112365910153,-117.2013877775091), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96110349395999,-117.2012982554404), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95174628363204,-117.23895358869311), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95185615197477,-117.23900439462258), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.9615477823511,-117.20606272595862), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.96156785254752,-117.20600051664756), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.95562521897732,-117.2134653488086), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.955763919442134,-117.21347394770544), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.98281676039268,-117.23035707966399), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.98271923971443,-117.2303984332626), type: 'cityiq'},
+        {   position: new google.maps.LatLng(32.70689845,-117.1607411), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71583451,-117.1639571), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72919489,-117.2090749), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72099732,-117.1684029), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7288845,-117.2089738), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7087422,-117.1642735), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70576538,-117.1571255), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70689845,-117.1607411), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71557611,-117.1638968), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7197853,-117.163711), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7087422,-117.1642735), type: 'asset'},
+        {   position: new google.maps.LatLng(32.711348,-117.1708904), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71584859,-117.1648067), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70583407,-117.1590011), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70589444,-117.1633134), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7199845,-117.164689), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70772924,-117.1620918), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70583407,-117.1590011), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71584859,-117.1648067), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70589444,-117.1633134), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7199845,-117.164689), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71557611,-117.1638968), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998192,-117.1630363), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70772924,-117.1620918), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71560268,-117.16119), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71582265,-117.1630224), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715549,-117.165501), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71558842,-117.1645783), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71079788,-117.1681652), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71789209,-117.1609982), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71583451,-117.1639571), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70576538,-117.1571255), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715823,-117.16574), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71560268,-117.16119), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71789209,-117.1609982), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71079788,-117.1681652), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715549,-117.165501), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7197826,-117.1630289), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998644,-117.1628365), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71994163,-117.1648982), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7197826,-117.1630289), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71790967,-117.1619065), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71560689,-117.1636956), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71162173,-117.1708677), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72205223,-117.1690889), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71977104,-117.1619024), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72289433,-117.1692742), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72914334,-117.1953287), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72186193,-117.169054576686), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71582393,-117.1627806), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72916285,-117.1877552), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72919489,-117.2090749), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7288845,-117.2089738), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71582393,-117.1627806), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998234,-117.161937), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7197853,-117.163711), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72307705,-117.1690703), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71978022,-117.1621023), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71978,-117.1621), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71789626,-117.163921), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72841754,-117.1843029), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72937991,-117.1909743), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71582393,-117.1627806), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72870861,-117.1841742), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70772924,-117.1620918), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71560268,-117.16119), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72870861,-117.1841742), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715841,-117.16662), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72289433,-117.1692742), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71977104,-117.1619024), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71790967,-117.1619065), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998234,-117.161937), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71560689,-117.1636956), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998192,-117.1630363), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71558842,-117.1645783), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71557611,-117.1638968), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71994163,-117.1648982), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71998644,-117.1628365), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715549,-117.165501), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71585033,-117.1636945), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71585,-117.1637), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7197853,-117.163711), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71789626,-117.163921), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71789209,-117.1609982), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71978022,-117.1621023), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7199845,-117.164689), type: 'asset'},
+        {   position: new google.maps.LatLng(32.715823,-117.16574), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71162173,-117.1708677), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71079788,-117.1681652), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72919489,-117.2090749), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72916285,-117.1877552), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72205223,-117.1690889), type: 'asset'},
+        {   position: new google.maps.LatLng(32.711348,-117.1708904), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7087422,-117.1642735), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71583451,-117.1639571), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70589444,-117.1633134), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72186193,-117.169054576686), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72099732,-117.1684029), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72841754,-117.1843029), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71584859,-117.1648067), type: 'asset'},
+        {   position: new google.maps.LatLng(32.71582265,-117.1630224), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70576538,-117.1571255), type: 'asset'},
+        {   position: new google.maps.LatLng(32.7288845,-117.2089738), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72937991,-117.1909743), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72307705,-117.1690703), type: 'asset'},
+        {   position: new google.maps.LatLng(32.72914334,-117.1953287), type: 'asset'},
+        {   position: new google.maps.LatLng(32.70689845,-117.1607411), type: 'asset'}];
+
+      // Create markers.
+      features.forEach(function(feature) {
+        var marker = new google.maps.Marker({
+          position: feature.position,
+          icon: icons[feature.type].icon,
+          map: map
+        });
+        marker.addListener('click', function() {
+          alert(marker.getPosition());
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://localhost:5000/traffic?locationId=bc48141f",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json",
+              "Cache-Control": "no-cache",
+              "Postman-Token": "0353f96c-031d-4ac1-9fe4-ab550819a028"
+            }
+          }
+
+          $.ajax(settings).done(function (response) {
+            $(".vehicals").html(response.vehicleCount);
+          });
+
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://localhost:5000/pedestrian?locationId=bc48141f",
+            "method": "POST",
+            "headers": {
+              "Cache-Control": "no-cache",
+              "Postman-Token": "e8fb8289-7b91-4b7a-971e-11288d7c7972"
+            }
+          }
+
+          $.ajax(settings).done(function (response) {
+            $(".pedestrian").html(response.pedestrianCount);
+          });
+
+        });
+      });
+
+      var legend = document.getElementById('legend');
+      for (var key in icons) {
+        var type = icons[key];
+        var name = type.name;
+        var icon = type.icon;
+        var div = document.createElement('div');
+        div.innerHTML = '<img src="' + icon + '"> ' + name;
+        legend.appendChild(div);
+      }
+
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+      $(document).ready(function(){
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.darksky.net/forecast/8036c234fd15165787e55887b19fee7a/32.7978,-117.2403",
+          "method": "GET"
+        }
+
+        $.ajax(settings).done(function (response) {
+          $("#temprature").html(response.currently.temperature+'<sup>°F</sup>');
+          x=new Date()
+          $("#currentDay").html(String(x).substr(0,3));
+          $("#currentDate").html(String(x).substr(4,6));
+          $("#weather").html(response.currently.summary);
+          $("#windSpeed").html(response.currently.windSpeed+"km/h");
+          $("#humidity").html(response.currently.humidity);
+          $("#pressure").html(response.currently.pressure+"B");
+          $("#tempMon").html(response.daily.data[0].temperatureHigh+'<sup>°F</sup>');
+          $("#tempTue").html(response.daily.data[1].temperatureHigh+'<sup>°F</sup>');
+          $("#tempWed").html(response.daily.data[2].temperatureHigh+'<sup>°F</sup>');
+          $("#tempThurs").html(response.daily.data[3].temperatureHigh+'<sup>°F</sup>');
+          $("#tempFri").html(response.daily.data[4].temperatureHigh+'<sup>°F</sup>');
+          $("#tempSat").html(response.daily.data[5].temperatureHigh+'<sup>°F</sup>');
+          $("#tempSun").html(response.daily.data[6].temperatureHigh+'<sup>°F</sup>');
+        });
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:5000/incidents?severity=High",
+          "method": "GET"
+        }
+        $.ajax(settings).done(function (response) {
+          $("#incidentHigh").html(response.length);
+        });
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:5000/incidents?severity=Low",
+          "method": "GET"
+        }
+        $.ajax(settings).done(function (response) {
+          $("#incidentLow").html(response.length);
+        });
+      });
+    </script>
+</body>
+
+</html>
