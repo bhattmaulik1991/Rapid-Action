@@ -1,6 +1,6 @@
 ---
 applications:
-- name: predixSJSU_webApp
+- name: Predix_server
   memory: 512M
   instances: 1
   random-route: true
