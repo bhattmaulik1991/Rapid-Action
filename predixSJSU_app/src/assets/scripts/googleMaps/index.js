@@ -10,7 +10,9 @@ export default (function () {
       const longitude = -117.1611;
       const mapZoom   = 10;
       const { google }    = window;
-
+      var directionsService = new google.maps.DirectionsService();
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      var shelter = new google.maps.LatLng(32.7497568, -117.15935739999998);
       const mapOptions = {
         center    : new google.maps.LatLng(latitude, longitude),
         zoom      : mapZoom,
@@ -65,9 +67,21 @@ export default (function () {
           ],
         }],
       };
-
+      
       const map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-
+      directionsDisplay.setMap(map);
+      var trafficLayer = new google.maps.TrafficLayer();
+      trafficLayer.setMap(map);
+      var request = {
+        origin:new google.maps.LatLng(latitude, longitude),
+        destination:shelter,
+        travelMode: 'DRIVING'
+      };
+      directionsService.route(request, function(response, status) {
+        if (status == 'OK') {
+          directionsDisplay.setDirections(response);
+        }
+      });
       new google.maps.Marker({
         map,
         position : new google.maps.LatLng(latitude, longitude),

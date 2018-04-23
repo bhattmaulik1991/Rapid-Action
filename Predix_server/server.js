@@ -20,21 +20,27 @@ MongoClient.connect(MONGO_URL, (err, db) => {
 	  }
 })
 
-app.post('/adminlogin' , function(req , res){
-
+app.post('/login' , function(req , res){
 	var collection = database.collection('predix_admin');
-
-	console.log(req);
     collection.find({username : req.body.username, password : req.body.password}).toArray(function(err , result){
-
-                    if(result[0]){
-                        res.status(200).send();
-                    }else{
-                        res.status(401).send();
-                    }
-                 })
+        if(result[0]){
+            res.status(200).send();
+        }else{
+            res.status(401).send();
+        }
+     })
 });
 
+app.post('/register' , function(req , res){
+  var collection = database.collection('predix_admin');
+    collection.insertOne({username : req.body.username, email : req.body.email, password : req.body.password}, function(err , result){
+        if(result){
+            res.status(200).send("Success");
+        }else{
+            res.status(401).send();
+        }
+     })
+});
 
 app.post('/traffic', function(req, res){
 
@@ -216,6 +222,18 @@ app.get('/incidents', function(req, res){
   	{
   		res.send(result);	
   	}
+  })
+})
+
+app.post('/incidents', function(req, res){
+  var db = database.collection('predix_user_report');
+  db.insertOne({username:req.body.username,message:req.body.message,latlang:req.body.latlang,severity:req.body.severity,Timestamp:req.body.Timestamp} , function(err , response){
+      if(err){
+          console.log(err);                               
+      }else{
+          console.log("incident added added ");
+          res.send("Added");
+      }
   })
 })
 

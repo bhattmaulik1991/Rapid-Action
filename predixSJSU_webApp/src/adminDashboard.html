@@ -1001,11 +1001,10 @@
           map: map
         });
         marker.addListener('click', function() {
-          alert(marker.getPosition());
           var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:5000/traffic?locationId=bc48141f",
+            "url": "http://ec2-54-67-16-137.us-west-1.compute.amazonaws.com:5000/traffic?locationId=bc48141f",
             "method": "POST",
             "headers": {
               "Content-Type": "application/json",
@@ -1021,7 +1020,7 @@
           var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:5000/pedestrian?locationId=bc48141f",
+            "url": "http://ec2-54-67-16-137.us-west-1.compute.amazonaws.com:5000/pedestrian?locationId=bc48141f",
             "method": "POST",
             "headers": {
               "Cache-Control": "no-cache",
@@ -1076,7 +1075,7 @@
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:5000/incidents?severity=High",
+          "url": "http://ec2-54-67-16-137.us-west-1.compute.amazonaws.com:5000/incidents?severity=High",
           "method": "GET"
         }
         $.ajax(settings).done(function (response) {
@@ -1086,7 +1085,7 @@
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost:5000/incidents?severity=Low",
+          "url": "http://ec2-54-67-16-137.us-west-1.compute.amazonaws.com:5000/incidents?severity=Low",
           "method": "GET"
         }
         $.ajax(settings).done(function (response) {

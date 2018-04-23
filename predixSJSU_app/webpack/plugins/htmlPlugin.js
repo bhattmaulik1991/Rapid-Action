@@ -23,6 +23,8 @@ const titles = {
   '500': '500',
   'basic-table': 'Basic Table',
   'adminDashboard': 'Admin Dashboard',
+  'weather': 'Weather',
+  'composeUser': 'Compose User',
 };
 
 module.exports = Object.keys(titles).map(title => {
