@@ -999,12 +999,12 @@
           "url": "https://api.darksky.net/forecast/8036c234fd15165787e55887b19fee7a/32.7978,-117.2403",
           "method": "GET"
         }
+      x=new Date()
+      $("#currentDay").html(String(x).substr(0,3));
+      $("#currentDate").html(String(x).substr(4,6));
 
         $.ajax(settings).done(function (response) {
           $("#temprature").html(response.currently.temperature+'<sup>°F</sup>');
-          x=new Date()
-          $("#currentDay").html(String(x).substr(0,3));
-          $("#currentDate").html(String(x).substr(4,6));
           $("#weather").html(response.currently.summary);
           $("#windSpeed").html(response.currently.windSpeed+"km/h");
           $("#humidity").html(response.currently.humidity);
