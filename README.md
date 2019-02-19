@@ -18,3 +18,6 @@ https://predixui-postmenopausal-phytogenesis.run.aws-usw02-pr.ice.predix.io/admi
 
 To download android app:
 .phonegap/rapidAction.apk
+
+YouTube:
+https://www.youtube.com/watch?v=cVIMniSnyBc&t=128s
